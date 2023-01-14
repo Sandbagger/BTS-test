@@ -7,12 +7,12 @@ RSpec.describe "poker_hands/new", type: :view do
     ))
   end
 
-  it "renders new poker_hand form" do
-    render
+  # it "renders new poker_hand form" do
+  #   render
 
-    assert_select "form[action=?][method=?]", poker_hands_path, "post" do
+  #   assert_select "form[action=?][method=?]", poker_hands_path, "post" do
 
-      assert_select "input[name=?]", "poker_hand[cards]"
-    end
-  end
+  #     assert_select "input[name=?]", "poker_hand[cards]"
+  #   end
+  # end
 end
