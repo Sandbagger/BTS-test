@@ -1,0 +1,14 @@
+require 'rails_helper'
+
+RSpec.describe "poker_hands/show", type: :view do
+  before(:each) do
+    assign(:poker_hand, PokerHand.create!(
+      cards: "Cards"
+    ))
+  end
+
+  it "renders attributes in <p>" do
+    render
+    expect(rendered).to match(/Cards/)
+  end
+end
