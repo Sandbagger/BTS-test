@@ -1,8 +1,29 @@
 class Rank
   attr_reader :cards
+
+  RANKS = [
+    ['1: Five of a kind', :five_of_a_kind?],
+    ['2: Straight flush', :straight_flush?],
+    ['3: Four of a kind', :four_of_a_kind?],
+    ['4: Full house', :full_house?],
+    ['5: Flush', :flush?],
+    ['6: Straight', :straight?],
+    ['7: Three of a kind', :three_of_a_kind?],
+    ['8: Two pair', :two_pair?],
+    ['9: One pair', :one_pair?],
+    ['10: High card', :high_card?],
+  ]
+
   def initialize(cards)
     @cards = cards
     @wildcard = cards.size == 6 ? cards.pop : nil
+  end
+
+  def call
+    # Light use of (controversal) meta-programming, returns response from the first truthy method
+    RANKS.map{ |rank| 
+      (method(rank[1]).call)? rank[0] : false
+  }.find { |res| res }
   end
 
   def five_of_a_kind?
@@ -18,7 +39,7 @@ class Rank
   end
 
   def full_house?
-    three_of_a_kind? && pair?
+    three_of_a_kind? && one_pair?
   end
 
   def flush?
