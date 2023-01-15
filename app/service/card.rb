@@ -23,6 +23,10 @@ class Card
     @value = VALUES[@face]
   end
 
+  def value_low
+    @face == 'A' ? VALUES['L'] : VALUES[@face]
+  end
+
   def to_s
     "#{@face}#{@suit}"
   end
