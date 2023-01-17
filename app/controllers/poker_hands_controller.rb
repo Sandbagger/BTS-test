@@ -21,12 +21,11 @@ class PokerHandsController < ApplicationController
 
   # POST /poker_hands or /poker_hands.json
   def create
-    pp params
     @poker_hand = PokerHand.new(poker_hand_params)
 
     respond_to do |format|
       if @poker_hand.save
-        format.html { redirect_to poker_hand_url(@poker_hand), notice: "Poker hand was successfully created." }
+        format.html { redirect_to poker_hand_url(@poker_hand), notice: @poker_hand.rank  }
         format.json { render :show, status: :created, location: @poker_hand }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -66,6 +65,6 @@ class PokerHandsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def poker_hand_params
-      params.require(:poker_hand).permit(:cards)
+      params.require(:poker_hands).permit(cards: [])
     end
 end
