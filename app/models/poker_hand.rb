@@ -8,9 +8,9 @@ class PokerHand < ApplicationRecord
   ].freeze
 
   validates_each :cards do |record, attr, value |
-    record.errors.add(attr, 'Error: Hand size should be 5. Please input 5 valid cards') if value.any?(&:blank?)
-    record.errors.add(attr, 'Error: please input 5 valid cards') unless value.all? { |card| VALID_CARDS.include?(card) }
-    record.errors.add(attr, 'Error: No duplicate cards') if value.uniq.size != value.size
+    record.errors.add(attr, 'Error: Hand size should be 5. Please input 5 valid cards') if value.reject(&:blank?).size != 5
+    value.all?(&:present?) && value.each { |card| record.errors.add(attr, "Error: #{card} is not a valid card.") unless VALID_CARDS.include?(card)}
+    value.all?(&:present?) && record.errors.add(attr, 'Error: No duplicate cards') if value.uniq.size != value.size
   end
 
   def rank

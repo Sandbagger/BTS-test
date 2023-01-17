@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "poker_hands/show", type: :view do
   before(:each) do
     assign(:poker_hand, PokerHand.create!(
-      cards: "Cards"
+      cards: ['AS', '2S', '3S', '4S', '5S']
     ))
   end
 

@@ -4,10 +4,10 @@ RSpec.describe "poker_hands/index", type: :view do
   before(:each) do
     assign(:poker_hands, [
       PokerHand.create!(
-        cards: "Cards"
+        cards: ['AS', '2S', '3S', '4S', '5S']
       ),
       PokerHand.create!(
-        cards: "Cards"
+        cards: ['10H', 'JH', 'QH', 'KH', 'AH']
       )
     ])
   end
