@@ -14,20 +14,19 @@ class Rank
     ['10: High card', :high_card?],
   ]
 
-  def initialize(cards)
+  def initialize(cards:, wildcard: nil)
     @cards = cards
-    @wildcard = cards.size == 6 ? cards.pop : nil
+    @wildcard = wildcard
   end
 
   def call
-    # Light use of (controversal) meta-programming, returns response from the first truthy method
-    RANKS.map{ |rank| 
-      (method(rank[1]).call)? rank[0] : false
-  }.find { |res| res }
+    # Light use of (controversal) meta-programming, returns response from the first truthy Rank
+    RANKS.map { |rank| method(rank[1]).call ? rank[0] : false }
+         .find { |res| !!res }
   end
 
   def five_of_a_kind?
-    four_of_a_kind? && cards.count { |card| card.to_s == @wildcard.to_s } == 1
+    four_of_a_kind? && @wildcard.present? && @cards.count { |card| card.to_s == @wildcard.to_s } == 1
   end
 
   def straight_flush?
