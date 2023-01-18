@@ -34,4 +34,19 @@ RSpec.describe "Pokerhand", :type => :feature do
 
     expect(page).to have_content('2: Straight flush')
   end
+
+  scenario 'A user clicks creates poker hand with wildcard', js: true do
+    visit ''
+
+    find("input[aria-label='First card']").fill_in with: 'AS'
+    find("input[aria-label='Second card']").fill_in with: 'AC'
+    find("input[aria-label='Third card']").fill_in with: 'AD'
+    find("input[aria-label='Forth card']").fill_in with: 'AH'
+    find("input[aria-label='Fifth card']").fill_in with: '5S'
+
+    find("input[aria-label='Optional wildcard']").fill_in with: '5S'
+    click_button 'Create Poker hand'
+
+    expect(page).to have_content('1: Five of a kind')
+  end
 end

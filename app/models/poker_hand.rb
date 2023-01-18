@@ -14,6 +14,7 @@ class PokerHand < ApplicationRecord
   end
 
   def rank
-    Rank.new(cards.map { |card| Card.new(card) }).call
+    wildcard.present? ? Rank.new(cards: cards.map { |card| Card.new(card) }, wildcard: Card.new(wildcard) ).call :
+      Rank.new(cards: cards.map { |card| Card.new(card) }).call
   end
 end

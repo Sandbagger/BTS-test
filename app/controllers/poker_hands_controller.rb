@@ -65,6 +65,6 @@ class PokerHandsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def poker_hand_params
-      params.require(:poker_hands).permit(cards: [])
+      params.require(:poker_hand).permit(:wildcard, cards: [] )
     end
 end

@@ -13,15 +13,16 @@
 
   <div class="my-5 flex flex-col">
     <%= form.label :cards %>
-    <input name="poker_hands[cards][]" type="text" aria-label="First card"/>
-    <input name="poker_hands[cards][]" type="text" aria-label="Second card"/>
-    <input name="poker_hands[cards][]" type="text" aria-label="Third card"/>
-    <input name="poker_hands[cards][]" type="text" aria-label="Forth card"/>
-    <input name="poker_hands[cards][]" type="text" aria-label="Fifth card"/>
+    <input name="poker_hand[cards][]" type="text" aria-label="First card"/>
+    <input name="poker_hand[cards][]" type="text" aria-label="Second card"/>
+    <input name="poker_hand[cards][]" type="text" aria-label="Third card"/>
+    <input name="poker_hand[cards][]" type="text" aria-label="Forth card"/>
+    <input name="poker_hand[cards][]" type="text" aria-label="Fifth card"/>
   </div>
 
   <div class="my-5">
-    <%= form.label :optional_wildcard %>
+    <%= form.label :wildcard %>
+    <%= form.text_field :wildcard, aria: {label: "Optional wildcard"} %>
   </div>
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>

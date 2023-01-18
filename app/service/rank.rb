@@ -26,7 +26,12 @@ class Rank
   end
 
   def five_of_a_kind?
-    four_of_a_kind? && @wildcard.present? && @cards.count { |card| card.to_s == @wildcard.to_s } == 1
+    pp '@wildcard.present? && four_of_a_kind? && @cards.count { |card| card.to_s == @wildcard.to_s } == 1'
+    pp @wildcard.present? && four_of_a_kind? && @cards.count { |card| card.to_s == @wildcard.to_s } == 1
+    pp @wildcard.present? 
+    pp four_of_a_kind?
+    pp @cards.count { |card| card.to_s == @wildcard.to_s } == 1
+    @wildcard.present? && four_of_a_kind? && @cards.count { |card| card.to_s == @wildcard.to_s } == 1
   end
 
   def straight_flush?
