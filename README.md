@@ -1,24 +1,24 @@
 # README
+Submit 5 valid cards and it will display rank and label for the hand as a notice. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Set up 
+* `git clone https://github.com/Sandbagger/BTS-test`
+* cd into the BTS-Test folder and run 
+  * `bundle install`
+  * `rails db:create`
+  * `rails db:migrate`
+  * `bin/dev`
+* in a seperate terminal `bundle exec rspec` to run tests 
 
-Things you may want to cover:
+## Deplyed site
+You can visit the website at https://bts.fly.dev/
 
-* Ruby version
+## Requirements 
+* submit poker hand consisting 5 valid cards and return label and rank
 
-* System dependencies
+## Validation
+- hand size 5
+- no duplicate cards
+- valid cards
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
