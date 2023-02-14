@@ -1,6 +1,11 @@
 class Rank
   attr_reader :cards
 
+  # This class is doing multiple things, it hardcodes the response for each rank, it hardcodes the rank logic
+  # and it applies the rank logic to a hand of cards that has been .
+  # We could make this class open to future change by using dependency injection to pass in the game logic and the responses. 
+  # This might be useful if we wanted to re-use the class and for it to only be responsible for applying game logic to a hand.
+
   RANKS = [
     ['1: Five of a kind', :five_of_a_kind?],
     ['2: Straight flush', :straight_flush?],
@@ -25,12 +30,11 @@ class Rank
          .find { |res| !!res }
   end
 
+  # Other call sites should not rely on these methods, as they should serve the single purpose of applying rank logic to a hand. 
+  # Ideally these methods should be private, but we are using method to invoke them in the call method above, which breaks encapsulation
+  # private
+
   def five_of_a_kind?
-    pp '@wildcard.present? && four_of_a_kind? && @cards.count { |card| card.to_s == @wildcard.to_s } == 1'
-    pp @wildcard.present? && four_of_a_kind? && @cards.count { |card| card.to_s == @wildcard.to_s } == 1
-    pp @wildcard.present?
-    pp four_of_a_kind?
-    pp @cards.count { |card| card.to_s == @wildcard.to_s } == 1
     @wildcard.present? && four_of_a_kind? && @cards.count { |card| card.to_s == @wildcard.to_s } == 1
   end
 
