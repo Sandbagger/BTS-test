@@ -1,10 +1,8 @@
 class Rank
-  attr_reader :cards
-
   # This class is doing multiple things, it hardcodes the response for each rank, it hardcodes the rank logic
-  # and it applies the rank logic to a hand of cards that has been .
+  # and it applies the rank logic to a hand of cards that has been passed in.
   # We could make this class open to future change by using dependency injection to pass in the game logic and the responses. 
-  # This might be useful if we wanted to re-use the class and for it to only be responsible for applying game logic to a hand.
+  # This might be useful if we wanted to re-use the class for other card games and for it to only be responsible for applying game logic to a hand.
 
   RANKS = [
     ['1: Five of a kind', :five_of_a_kind?],
@@ -16,7 +14,7 @@ class Rank
     ['7: Three of a kind', :three_of_a_kind?],
     ['8: Two pair', :two_pair?],
     ['9: One pair', :one_pair?],
-    ['10: High card', :high_card?]
+    ['10: High card', HighCard.new]
   ]
 
   def initialize(cards:, wildcard: nil)
@@ -26,8 +24,15 @@ class Rank
 
   def call
     # Light use of (controversal) meta-programming, returns response from the first truthy Rank
-    RANKS.map { |rank| method(rank[1]).call ? rank[0] : false }
-         .find { |res| !!res }
+    RANKS.map do |rank| 
+      begin 
+        method(rank[1]).call ? rank[0] : false
+      rescue TypeError
+        # In a transitionary phase, this allows us to cut over to the respective rank classes whilst maintaining old logic
+        rank[1].call ? rank[0] : false
+      end
+    end
+    .find { |res| !!res }
   end
 
   # Other call sites should not rely on these methods, as they should serve the single purpose of applying rank logic to a hand. 
@@ -71,7 +76,7 @@ class Rank
     @cards.map(&:face).tally.values.include?(2)
   end
 
-  def high_card?
-    true
-  end
+  # def high_card?
+  #   true
+  # end
 end

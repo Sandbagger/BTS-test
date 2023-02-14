@@ -109,7 +109,8 @@ RSpec.describe 'Rank' do
     it 'should return correct rank and label for a hand containing a high card' do
       high_card = %w[AH 3S 7C 9D 2H].map { |card| Card.new(card) }
       rank = Rank.new(cards: high_card)
-      expect(rank.high_card?).to eq(true)
+      # Rank is beginning to know less about the hand logic that it is wrapping
+      # expect(rank.high_card?).to eq(true)
       expect(rank.call).to eq('10: High card')
     end
   end
