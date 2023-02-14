@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "poker_hands/new", type: :view do
+RSpec.describe 'poker_hands/new', type: :view do
   before(:each) do
     assign(:poker_hand, PokerHand.new(
-      cards: "MyString"
-    ))
+                          cards: 'MyString'
+                        ))
   end
 
   # it "renders new poker_hand form" do

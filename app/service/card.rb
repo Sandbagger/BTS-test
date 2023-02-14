@@ -1,5 +1,6 @@
 class Card
   attr_reader :face, :suit, :value
+
   VALUES = {
     'L' => 0,
     '2' => 1,
@@ -15,9 +16,9 @@ class Card
     'Q' => 11,
     'K' => 12,
     'A' => 13
-  }
+  }.freeze
 
-  def initialize card
+  def initialize(card)
     @face = card[0...-1]
     @suit = card[-1]
     @value = VALUES[@face]

@@ -1,6 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe "Pokerhand", :type => :feature do
+RSpec.describe 'Pokerhand', type: :feature do
   scenario 'A user clicks creates poker hand', js: true do
     visit ''
 

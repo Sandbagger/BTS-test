@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe "poker_hands/edit", type: :view do
-  let(:poker_hand) {
+RSpec.describe 'poker_hands/edit', type: :view do
+  let(:poker_hand) do
     PokerHand.create!(
-      cards: "MyString"
+      cards: 'MyString'
     )
-  }
+  end
 
   before(:each) do
     assign(:poker_hand, poker_hand)

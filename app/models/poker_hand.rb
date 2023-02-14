@@ -7,14 +7,22 @@ class PokerHand < ApplicationRecord
     AS 2S 3S 4S 5S 6S 7S 8S 9S 10S JS KS QS AS
   ].freeze
 
-  validates_each :cards do |record, attr, value |
-    record.errors.add(attr, 'Error: Hand size should be 5. Please input 5 valid cards') if value.reject(&:blank?).size != 5
-    value.all?(&:present?) && value.each { |card| record.errors.add(attr, "Error: #{card} is not a valid card.") unless VALID_CARDS.include?(card)}
+  validates_each :cards do |record, attr, value|
+    if value.reject(&:blank?).size != 5
+      record.errors.add(attr,
+                        'Error: Hand size should be 5. Please input 5 valid cards')
+    end
+    value.all?(&:present?) && value.each do |card|
+      record.errors.add(attr, "Error: #{card} is not a valid card.") unless VALID_CARDS.include?(card)
+    end
     value.all?(&:present?) && record.errors.add(attr, 'Error: No duplicate cards') if value.uniq.size != value.size
   end
 
   def rank
-    wildcard.present? ? Rank.new(cards: cards.map { |card| Card.new(card) }, wildcard: Card.new(wildcard) ).call :
+    if wildcard.present?
+      Rank.new(cards: cards.map { |card| Card.new(card) }, wildcard: Card.new(wildcard)).call
+    else
       Rank.new(cards: cards.map { |card| Card.new(card) }).call
+    end
   end
 end

@@ -12,94 +12,91 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/poker_hands", type: :request do
-  
+RSpec.describe '/poker_hands', type: :request do
   # This should return the minimal set of attributes required to create a valid
   # PokerHand. As you add validations to PokerHand, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    skip('Add a hash of attributes valid for your model')
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    skip('Add a hash of attributes invalid for your model')
+  end
 
-  describe "GET /index" do
-    it "renders a successful response" do
+  describe 'GET /index' do
+    it 'renders a successful response' do
       PokerHand.create! valid_attributes
       get poker_hands_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
+  describe 'GET /show' do
+    it 'renders a successful response' do
       poker_hand = PokerHand.create! valid_attributes
       get poker_hand_url(poker_hand)
       expect(response).to be_successful
     end
   end
 
-  describe "GET /new" do
-    it "renders a successful response" do
+  describe 'GET /new' do
+    it 'renders a successful response' do
       get new_poker_hand_url
       expect(response).to be_successful
     end
   end
 
-  describe "GET /edit" do
-    it "renders a successful response" do
+  describe 'GET /edit' do
+    it 'renders a successful response' do
       poker_hand = PokerHand.create! valid_attributes
       get edit_poker_hand_url(poker_hand)
       expect(response).to be_successful
     end
   end
 
-  describe "POST /create" do
-    context "with valid parameters" do
-      it "creates a new PokerHand" do
-        expect {
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      it 'creates a new PokerHand' do
+        expect do
           post poker_hands_url, params: { poker_hand: valid_attributes }
-        }.to change(PokerHand, :count).by(1)
+        end.to change(PokerHand, :count).by(1)
       end
 
-      it "redirects to the created poker_hand" do
+      it 'redirects to the created poker_hand' do
         post poker_hands_url, params: { poker_hand: valid_attributes }
         expect(response).to redirect_to(poker_hand_url(PokerHand.last))
       end
     end
 
-    context "with invalid parameters" do
-      it "does not create a new PokerHand" do
-        expect {
+    context 'with invalid parameters' do
+      it 'does not create a new PokerHand' do
+        expect do
           post poker_hands_url, params: { poker_hand: invalid_attributes }
-        }.to change(PokerHand, :count).by(0)
+        end.to change(PokerHand, :count).by(0)
       end
 
-    
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post poker_hands_url, params: { poker_hand: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
+      let(:new_attributes) do
+        skip('Add a hash of attributes valid for your model')
+      end
 
-      it "updates the requested poker_hand" do
+      it 'updates the requested poker_hand' do
         poker_hand = PokerHand.create! valid_attributes
         patch poker_hand_url(poker_hand), params: { poker_hand: new_attributes }
         poker_hand.reload
-        skip("Add assertions for updated state")
+        skip('Add assertions for updated state')
       end
 
-      it "redirects to the poker_hand" do
+      it 'redirects to the poker_hand' do
         poker_hand = PokerHand.create! valid_attributes
         patch poker_hand_url(poker_hand), params: { poker_hand: new_attributes }
         poker_hand.reload
@@ -107,26 +104,24 @@ RSpec.describe "/poker_hands", type: :request do
       end
     end
 
-    context "with invalid parameters" do
-    
+    context 'with invalid parameters' do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         poker_hand = PokerHand.create! valid_attributes
         patch poker_hand_url(poker_hand), params: { poker_hand: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
-  describe "DELETE /destroy" do
-    it "destroys the requested poker_hand" do
+  describe 'DELETE /destroy' do
+    it 'destroys the requested poker_hand' do
       poker_hand = PokerHand.create! valid_attributes
-      expect {
+      expect do
         delete poker_hand_url(poker_hand)
-      }.to change(PokerHand, :count).by(-1)
+      end.to change(PokerHand, :count).by(-1)
     end
 
-    it "redirects to the poker_hands list" do
+    it 'redirects to the poker_hands list' do
       poker_hand = PokerHand.create! valid_attributes
       delete poker_hand_url(poker_hand)
       expect(response).to redirect_to(poker_hands_url)

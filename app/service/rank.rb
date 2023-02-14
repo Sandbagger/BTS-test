@@ -11,7 +11,7 @@ class Rank
     ['7: Three of a kind', :three_of_a_kind?],
     ['8: Two pair', :two_pair?],
     ['9: One pair', :one_pair?],
-    ['10: High card', :high_card?],
+    ['10: High card', :high_card?]
   ]
 
   def initialize(cards:, wildcard: nil)
@@ -28,7 +28,7 @@ class Rank
   def five_of_a_kind?
     pp '@wildcard.present? && four_of_a_kind? && @cards.count { |card| card.to_s == @wildcard.to_s } == 1'
     pp @wildcard.present? && four_of_a_kind? && @cards.count { |card| card.to_s == @wildcard.to_s } == 1
-    pp @wildcard.present? 
+    pp @wildcard.present?
     pp four_of_a_kind?
     pp @cards.count { |card| card.to_s == @wildcard.to_s } == 1
     @wildcard.present? && four_of_a_kind? && @cards.count { |card| card.to_s == @wildcard.to_s } == 1
@@ -68,6 +68,6 @@ class Rank
   end
 
   def high_card?
-    !one_pair? && !two_pair? && !three_of_a_kind? && !straight? && !flush? && !full_house? && !four_of_a_kind? && !straight_flush?
+    true
   end
 end

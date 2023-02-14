@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_17_154128) do
+ActiveRecord::Schema[7.0].define(version: 20_230_118_093_207) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "poker_hands", force: :cascade do |t|
-    t.string "cards", array: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "wildcard"
-    t.string "string"
+  create_table 'poker_hands', force: :cascade do |t|
+    t.string 'cards', array: true
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.string 'wildcard'
+    t.string 'string'
+    t.string 'rank'
   end
-
 end
