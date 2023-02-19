@@ -25,4 +25,13 @@ class PokerHand < ApplicationRecord
       Rank.new(cards: cards.map { |card| Card.new(card) }).call
     end
   end
+
+  def self.cache(id, value = nil)
+    hand = Rails.cache.read("hand:#{id}") || []
+    Rails.cache.write("hand:#{id}", hand << value) if value
+
+    new(
+      cards: hand
+    )
+  end
 end
