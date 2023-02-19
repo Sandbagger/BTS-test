@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Sandbagger/BTS-test#readme",
   "dependencies": {
     "@rails/webpacker": "5.4.4",
+    "stimulus_reflex": "3.4.1",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
   },
