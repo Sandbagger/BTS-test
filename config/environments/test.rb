@@ -52,22 +52,11 @@ Rails.application.configure do
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
 
-  config.cache_store = :redis_cache_store, {
-    driver: :hiredis,
-    url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }
-  }
-  
-  config.session_store(
-    :cache_store,
-    key: "_session_development",
-    compress: true,
-    pool_size: 5,
-    expire_after: 1.year
-  )
-
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+  config.action_controller.perform_caching = true
+  config.cache_store = :redis_cache_store, {driver: :hiredis, url: Rails.application.credentials.redis_url}
 end

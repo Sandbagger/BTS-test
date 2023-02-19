@@ -64,6 +64,8 @@ Rails.application.configure do
     url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }
   }
   
+  config.session_store :cache_store, key: "_sessions_development", compress: true, pool_size: 5, expire_after: 1.year
+  
   config.session_store(
     :cache_store,
     key: "_session_development",
