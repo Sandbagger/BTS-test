@@ -17,7 +17,7 @@ You can visit the website at https://bts.fly.dev/ -->
 * submit poker hand consisting 5 valid cards and return label and rank
 
 ## Additonal Requirements
-*   Form wizard for adding cards to hand 
+*   Form wizard for adding cards to a hand 
 *   Additional form wizard for constructing cards before adding cards to the hand 
     - for each card
       - choose suit 
@@ -32,9 +32,9 @@ You can visit the website at https://bts.fly.dev/ -->
 ## TODO
   ### First pass
     View
-      - attach view controller on form `data: { controller: 'hand'}`
-      - add target for each card `data: { target: 'first_card' }
-      - add action click->hand#next on next button 
+      - ~~attach view controller on form `data: { controller: 'hand'~~
+      - ~~add target for each card `data: { target: 'first_card' }`~~
+      - ~~add action click->hand#next on next button~~
     Model
       - create persistent class method that takes session id and a values array
       - if values array write to cache and return model instace with cached values 
