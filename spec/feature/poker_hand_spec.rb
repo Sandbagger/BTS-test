@@ -4,6 +4,15 @@ RSpec.describe 'Pokerhand', type: :feature do
   scenario 'A user clicks creates poker hand', js: true do
     visit ''
 
+    find('form[data-controller="hand"]')
+    find('input[data-target="hand.card1"]')
+    find('input[data-target="hand.card2"]')
+    find('input[data-target="hand.card3"]')
+    find('input[data-target="hand.card4"]')
+    find('input[data-target="hand.card5"]')
+    find('button[data-action="click->hand#next"]')
+
+
     click_button 'Create Poker hand'
     save_and_open_screenshot
     expect(page).to have_content('Error: Hand size should be 5. Please input 5 valid cards')

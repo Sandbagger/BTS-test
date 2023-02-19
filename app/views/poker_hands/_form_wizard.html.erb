@@ -1,0 +1,9 @@
+<div class="my-5">
+		<%= f.text_field :card_1, data: {target: 'hand.card1'} %>
+		<%= f.text_field :card_2, data: {target: 'hand.card2'} %>
+		<%= f.text_field :card_3, data: {target: 'hand.card3'} %>
+		<%= f.text_field :card_4, data: {target: 'hand.card4'} %>
+		<%= f.text_field :card_5, data: {target: 'hand.card5'} %>
+</div>
+
+<button data-action='click->hand#next'>Next</button>
