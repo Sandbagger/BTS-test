@@ -30,7 +30,7 @@ Rails.application.configure do
   else
     config.action_controller.perform_caching = false
 
-    config.cache_store = :null_store
+    config.cache_store = :cache_store
   end
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
@@ -58,6 +58,19 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+
+  config.cache_store = :redis_cache_store, {
+    driver: :hiredis,
+    url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }
+  }
+  
+  config.session_store(
+    :cache_store,
+    key: "_session_development",
+    compress: true,
+    pool_size: 5,
+    expire_after: 1.year
+  )
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true

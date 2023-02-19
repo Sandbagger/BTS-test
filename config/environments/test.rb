@@ -25,7 +25,7 @@ Rails.application.configure do
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
-  config.cache_store = :null_store
+  config.cache_store = :cache_store
 
   # Raise exceptions instead of rendering exception templates.
   config.action_dispatch.show_exceptions = false
@@ -51,6 +51,19 @@ Rails.application.configure do
 
   # Tell Active Support which deprecation messages to disallow.
   config.active_support.disallowed_deprecation_warnings = []
+
+  config.cache_store = :redis_cache_store, {
+    driver: :hiredis,
+    url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }
+  }
+  
+  config.session_store(
+    :cache_store,
+    key: "_session_development",
+    compress: true,
+    pool_size: 5,
+    expire_after: 1.year
+  )
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
