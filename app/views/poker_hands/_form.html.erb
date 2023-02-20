@@ -1,4 +1,4 @@
-<%= form_with(model: poker_hand, class: "contents", data: {controller: 'hand'}) do |form| %>
+<%= form_with(model: @poker_hand, class: "contents", data: {controller: 'hand' } ) do |form| %>
   <% if poker_hand.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(poker_hand.errors.count, "error") %> prohibited this poker_hand from being saved:</h2>
@@ -11,23 +11,42 @@
     </div>
   <% end %>
 
-  <div class="my-5 flex flex-col">
-    <%= form.label :cards %>
-    <input name="poker_hand[cards][]" type="text" aria-label="First card"/>
-    <input name="poker_hand[cards][]" type="text" aria-label="Second card"/>
-    <input name="poker_hand[cards][]" type="text" aria-label="Third card"/>
-    <input name="poker_hand[cards][]" type="text" aria-label="Forth card"/>
-    <input name="poker_hand[cards][]" type="text" aria-label="Fifth card"/>
-  </div>
+  <%= @poker_hand.cards %>
 
-  <div class="my-5">
-    <%= form.label :wildcard %>
-    <%= form.text_field :wildcard, aria: {label: "Optional wildcard"} %>
-  </div>
 
-  <%= render partial: 'form_wizard', locals:{ f: form } %>
-  
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
+  <% if @step == :first_card %>
+	  <p>Add your first card</p>
+	  <%= form.text_field :card_1, data: {target: 'hand.card1'} %>
+	    <button data-action='click->hand#next'>Next</button>
+  <% end %>
+
+   <% if @step == :second_card %>
+	  <p>Add your second card</p>
+	  <%= form.text_field :card_2, data: {target: 'hand.card2'} %>
+	    <button data-action='click->hand#next'>Next</button>
+      <button data-action="click->hand#previous">Previous</button>
+  <% end %>
+
+  <% if @step == :third_card %>
+    <p>Add your third card</p>
+    <%= form.text_field :card_3, data: {target: 'hand.card3'} %>
+      <button data-action='click->hand#next'>Next</button>
+      <button data-action="click->hand#previous">Previous</button>
+  <% end %>
+
+  <% if @step == :fourth_card %>
+    <p>Add your fourth card</p>
+    <%= form.text_field :card_4, data: {target: 'hand.card4'} %>
+      <button data-action='click->hand#next'>Next</button>
+      <button data-action="click->hand#previous">Previous</button>
+  <% end %>
+
+    <% if @step == :fifth_card %>
+	<p>Add your fifth card</p>
+	<%= form.text_field :card_5, data: {target: 'hand.card5'} %>
+	<button data-action='click->hand#next'>Next</button>
+  <button data-action="click->hand#previous">Previous</button>
+  <% end %>
 <% end %>
+
+<body data-controller="radiolabel"></body>

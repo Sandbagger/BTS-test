@@ -26,12 +26,26 @@ class PokerHand < ApplicationRecord
     end
   end
 
-  def self.cache(id, value = nil)
-    hand = Rails.cache.read("hand:#{id}") || []
-    Rails.cache.write("hand:#{id}", hand << value) if value
+  def self.cache(id, value = {})
+    Rails.cache.write("card1:#{id}", value["card1"]) if value["card1"]
+    Rails.cache.write("card2:#{id}", value["card2"]) if value["card2"]
+    Rails.cache.write("card3:#{id}", value["card3"]) if value["card3"]
+    Rails.cache.write("card4:#{id}", value["card4"]) if value["card4"]
+    Rails.cache.write("card5:#{id}", value["card5"]) if value["card5"]
 
     new(
-      cards: hand
+      cards: [
+          Rails.cache.read("card1:#{id}"), 
+          Rails.cache.read("card2:#{id}"), 
+          Rails.cache.read("card3:#{id}"), 
+          Rails.cache.read("card4:#{id}"), 
+          Rails.cache.read("card5:#{id}")
+        ]
     )
+  end
+
+  def self.clear_cache(id)
+    Rails.cache.delete("step:#{id}")
+    Rails.cache.delete("hand:#{id}")
   end
 end
