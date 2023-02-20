@@ -8,7 +8,7 @@ const application = Application.start()
 application.debug = true
 window.Stimulus   = application
 
-const context = require.context("./controllers", true, /\.js$/)
+const context = require.context("controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 application.consumer = consumer
 StimulusReflex.initialize(application, { isolate: true, debug: true })

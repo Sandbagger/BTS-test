@@ -18,7 +18,6 @@ export default class extends ApplicationController {
 
   connect () {
     super.connect()
-    console.log('connect stimulus ')
     // add your code here, if applicable
   }
 
@@ -74,9 +73,8 @@ export default class extends ApplicationController {
     static targets = ['card1', 'card2', 'card3',  'card4', 'card5'];
   
     next(event) {
-      console.log("next", event)
       event.preventDefault();
-      this.stimulate("HandReflex#next", this.handleCards());
+      this.stimulate("HandReflex#next",  'AS');
     }
   
     previous(event) {
@@ -85,8 +83,7 @@ export default class extends ApplicationController {
     }
 
     handleCards() {
-      console.log('this.card1Target', this.card1Target.value)
-      return [this.card1Target.value]
+      // return [this.card1Target, this.card2Target, this.card3Target, this.card4Target, this.card5Target]
     }
   
 }
