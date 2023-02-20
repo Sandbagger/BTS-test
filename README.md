@@ -36,19 +36,19 @@ You can visit the website at https://bts.fly.dev/ -->
       - ~~add target for each card `data: { target: 'first_card' }`~~
       - ~~add action click->hand#next on next button~~
     Model
-      - create persistent class method that takes session id and a values array
-      - if values array write to cache and return model instace with cached values 
-      - otherwise, return instance with cached values  
+      - ~~create persistent class method that takes session id and a values array~~
+      - ~~if values array write to cache and return model instace with cached values~~ 
+      - ~~otherwise, return instance with cached values~~ 
     Card reflex
       - declare steps `STEPS = [:card_1, :card_2, card_3, card_4, card_5]
       - next method that accepts value array
         - write to cache 
         - increment step
     View controller
-      - declare static targets `static targets = ['first_card', 'second_card' ]
-      - declare next method that handles event object
-        - prevent default 
-        - map to reflex 
+      - ~~declare static targets `static targets = ['first_card', 'second_card' ]~~
+      - ~~declare next method that handles event object~~
+        - ~~prevent default~~ 
+        - ~~map to reflex~~ 
 
    For each card in hand, select card from Form Wizard for adding cards to the hand 
     - for each card
