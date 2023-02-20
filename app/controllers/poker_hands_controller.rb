@@ -11,7 +11,11 @@ class PokerHandsController < ApplicationController
 
   # GET /poker_hands/new
   def new
-    @poker_hand = PokerHand.new
+    # Fill from cache
+    @poker_hand ||= PokerHand.cache(session.id)
+
+    # Set up step
+    @step ||= Rails.cache.fetch("step:#{session.id}") { :first_card }
   end
 
   # GET /poker_hands/1/edit
